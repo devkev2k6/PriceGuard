@@ -492,25 +492,27 @@
               : ""
           }
 
-          <!-- Multi-Store Search Links (no fabricated prices) -->
-          <div class="pg-section-title">🛍️ Compare Prices Across Stores</div>
+          <!-- Multi-Store Live Price Comparison Matrix -->
+          <div class="pg-section-title">🛍️ Live Multi-Store Price Comparison Matrix</div>
           <div class="pg-deals-list">
             ${counterPurchasing.alternativeDeals
               .map(
                 (deal) => `
-              <div class="pg-deal-card ${deal.isBestBet ? "best-deal" : ""}">
+              <div class="pg-deal-card ${deal.isLowestPrice ? "best-deal" : ""}">
                 <div class="pg-deal-left">
                   <span class="pg-deal-logo">${deal.logo}</span>
                   <div>
                     <div class="pg-deal-name">
                       ${deal.retailer}
-                      ${deal.isBestBet ? '<span class="pg-best-badge">BEST BET</span>' : ""}
+                      ${deal.isLowestPrice ? '<span class="pg-best-badge">BEST PRICE</span>' : ""}
                     </div>
                     <div class="pg-deal-perk">${deal.perk}</div>
                   </div>
                 </div>
                 <div class="pg-deal-right">
-                  <a href="${deal.url}" target="_blank" rel="noopener" class="pg-deal-btn">${deal.checkPriceLabel || "Check Price"} ↗</a>
+                  <div class="pg-deal-price">₹${deal.sellingPrice.toLocaleString("en-IN")}</div>
+                  ${deal.savingsVsFlipkart > 0 ? `<div class="pg-deal-save">Save ₹${deal.savingsVsFlipkart.toLocaleString("en-IN")}</div>` : ""}
+                  <a href="${deal.url}" target="_blank" rel="noopener" class="pg-deal-btn">View ↗</a>
                 </div>
               </div>
             `

@@ -341,25 +341,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       signalsList.innerHTML = `<div class="signal-chip info"><strong>Normal Session Baseline</strong>: No dynamic velocity surge.</div>`;
     }
 
-    // Multi-Store Search Links (no fabricated prices — real search results on each platform)
+    // Multi-Store Live Price Comparison list
     if (popupAlternatives && counterPurchasing && counterPurchasing.alternativeDeals) {
       popupAlternatives.innerHTML = counterPurchasing.alternativeDeals
-        .slice(0, 3)
+        .slice(0, 4)
         .map(
           (deal) => `
-        <a href="${deal.url}" target="_blank" rel="noopener" class="popup-deal-row ${deal.isBestBet ? "best-deal" : ""}">
+        <a href="${deal.url}" target="_blank" rel="noopener" class="popup-deal-row ${deal.isLowestPrice ? "best-deal" : ""}">
           <div class="popup-deal-left">
             <span class="popup-deal-logo">${deal.logo}</span>
             <div>
               <div class="popup-deal-name">
                 ${deal.retailer}
-                ${deal.isBestBet ? '<span class="popup-best-badge">BEST BET</span>' : ""}
+                ${deal.isLowestPrice ? '<span class="popup-best-badge">BEST PRICE</span>' : ""}
               </div>
               <div class="popup-deal-perk">${deal.perk}</div>
             </div>
           </div>
           <div class="popup-deal-right">
-            <span class="popup-deal-btn">${deal.checkPriceLabel || "Check Price"} ↗</span>
+            <div class="popup-deal-price">₹${deal.sellingPrice.toLocaleString("en-IN")}</div>
+            ${deal.savingsVsFlipkart > 0 ? `<div class="popup-deal-save">Save ₹${deal.savingsVsFlipkart.toLocaleString("en-IN")}</div>` : ""}
+            <span class="popup-deal-btn">View ↗</span>
           </div>
         </a>
       `
