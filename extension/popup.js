@@ -42,15 +42,24 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (tab && tab.id && tab.url && (tab.url.includes("flipkart.com") || tab.url.includes("localhost") || tab.url.includes("127.0.0.1"))) {
         activeTabId = tab.id;
 
-        // Try direct message to content script first
-        chrome.tabs.sendMessage(tab.id, { action: "getAnalysis" }, (response) => {
-          if (chrome.runtime.lastError || !response || !response.analysis) {
-            // Fallback: Scrape DOM directly via scripting
-            performFallbackDOMScrape(tab.id);
-          } else {
-            renderAnalysis(response.analysis);
-          }
-        });
+        // Try direct message to content script with auto-retry
+        let responded = false;
+
+        function tryGetAnalysis(attempt = 1) {
+          chrome.tabs.sendMessage(tab.id, { action: "getAnalysis" }, (response) => {
+            if (!chrome.runtime.lastError && response && response.analysis) {
+              responded = true;
+              renderAnalysis(response.analysis);
+            } else if (attempt < 3 && !responded) {
+              setTimeout(() => tryGetAnalysis(attempt + 1), 200);
+            } else if (!responded) {
+              // Fallback: Scrape DOM directly via chrome.scripting
+              performFallbackDOMScrape(tab.id);
+            }
+          });
+        }
+
+        tryGetAnalysis(1);
       } else {
         showEmptyState();
       }
@@ -332,27 +341,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       signalsList.innerHTML = `<div class="signal-chip info"><strong>Normal Session Baseline</strong>: No dynamic velocity surge.</div>`;
     }
 
-    // Multi-Store Live Price Comparison list
+    // Multi-Store Search Links (no fabricated prices — real search results on each platform)
     if (popupAlternatives && counterPurchasing && counterPurchasing.alternativeDeals) {
       popupAlternatives.innerHTML = counterPurchasing.alternativeDeals
         .slice(0, 3)
         .map(
           (deal) => `
-        <a href="${deal.url}" target="_blank" rel="noopener" class="popup-deal-row ${deal.isLowestPrice ? "best-deal" : ""}">
+        <a href="${deal.url}" target="_blank" rel="noopener" class="popup-deal-row ${deal.isBestBet ? "best-deal" : ""}">
           <div class="popup-deal-left">
             <span class="popup-deal-logo">${deal.logo}</span>
             <div>
               <div class="popup-deal-name">
                 ${deal.retailer}
-                ${deal.isLowestPrice ? '<span class="popup-best-badge">BEST PRICE</span>' : ""}
+                ${deal.isBestBet ? '<span class="popup-best-badge">BEST BET</span>' : ""}
               </div>
               <div class="popup-deal-perk">${deal.perk}</div>
             </div>
           </div>
           <div class="popup-deal-right">
-            <div class="popup-deal-price">₹${deal.sellingPrice.toLocaleString("en-IN")}</div>
-            ${deal.savingsVsFlipkart > 0 ? `<div class="popup-deal-save">Save ₹${deal.savingsVsFlipkart.toLocaleString("en-IN")}</div>` : ""}
-            <span class="popup-deal-btn">Buy ↗</span>
+            <span class="popup-deal-btn">${deal.checkPriceLabel || "Check Price"} ↗</span>
           </div>
         </a>
       `

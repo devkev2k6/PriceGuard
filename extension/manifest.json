@@ -5,7 +5,8 @@
   "description": "AI-powered dynamic pricing detector, fair-price estimator, and counter-purchasing engine for Flipkart.",
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
   "host_permissions": [
     "*://*.flipkart.com/*",
@@ -32,7 +33,7 @@
       "css": [
         "content.css"
       ],
-      "run_at": "document_idle"
+      "run_at": "document_end"
     }
   ],
   "action": {

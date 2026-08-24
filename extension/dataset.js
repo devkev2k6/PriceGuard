@@ -1,5 +1,9 @@
 /**
- * PriceGuard AI - Pricing Knowledge Base & Multi-Store Price Comparison Engine
+ * PriceGuard AI - Pricing Knowledge Base & Multi-Store Search Engine
+ *
+ * IMPORTANT: We do NOT fabricate or estimate competitor prices.
+ * We link users directly to live search results on each platform
+ * so they see the actual real-time price themselves.
  */
 
 const PriceGuardDataset = {
@@ -9,28 +13,28 @@ const PriceGuardDataset = {
       name: "Smartphones & Mobiles",
       typicalDiscountRange: [0.08, 0.22],
       volatilityScore: 45,
-      competitors: ["Amazon", "Croma", "Reliance Digital", "Brand Store"],
+      competitors: ["Amazon India", "Croma", "Reliance Digital", "Brand Store"],
       bestBuyingWindow: "Tuesday/Wednesday night (11 PM - 2 AM)"
     },
     audio: {
       name: "Audio & Wearables",
       typicalDiscountRange: [0.35, 0.65],
       volatilityScore: 60,
-      competitors: ["Amazon", "Croma", "Headphone Zone", "Brand Store"],
+      competitors: ["Amazon India", "Croma", "Headphone Zone"],
       bestBuyingWindow: "Weekend Flash Deals (Saturday morning)"
     },
     laptops: {
       name: "Laptops & Computers",
       typicalDiscountRange: [0.10, 0.28],
       volatilityScore: 35,
-      competitors: ["Amazon", "Croma", "Reliance Digital", "Vijay Sales"],
+      competitors: ["Amazon India", "Croma", "Vijay Sales"],
       bestBuyingWindow: "Month-End Payday Sales"
     },
     appliances: {
       name: "Home & Kitchen Appliances",
       typicalDiscountRange: [0.20, 0.40],
       volatilityScore: 30,
-      competitors: ["Amazon", "Croma", "Reliance Digital"],
+      competitors: ["Amazon India", "Croma", "Reliance Digital"],
       bestBuyingWindow: "Festival / Festive Clearance periods"
     },
     travel: {
@@ -44,14 +48,14 @@ const PriceGuardDataset = {
       name: "Fashion & Lifestyle",
       typicalDiscountRange: [0.40, 0.70],
       volatilityScore: 50,
-      competitors: ["Myntra", "Ajio", "Amazon Fashion", "Tata CLiQ"],
+      competitors: ["Myntra", "Ajio", "Amazon Fashion"],
       bestBuyingWindow: "End of Season Sales (EOSS)"
     },
     general: {
       name: "General Merchandise",
       typicalDiscountRange: [0.15, 0.35],
       volatilityScore: 40,
-      competitors: ["Amazon", "Tata CLiQ", "JioMart"],
+      competitors: ["Amazon India", "Tata CLiQ", "JioMart"],
       bestBuyingWindow: "Super Value Days (1st to 7th of month)"
     }
   },
@@ -80,137 +84,217 @@ const PriceGuardDataset = {
     return "general";
   },
 
-  // Multi-Store Real-Time Price Comparison across E-Commerce Websites
+  /**
+   * Multi-Store Search Links — NO FABRICATED PRICES
+   *
+   * Returns clickable search links for platforms that actually carry the
+   * product category. Users will see live real prices on each site.
+   * We never estimate or invent competitor prices.
+   */
   generateAlternativeDeals(title = "", currentPrice = 0, category = "general") {
     let cleanTitle = title || "";
-    // Filter out any internal UI text that might slip in
-    if (cleanTitle.match(/Dynamic Pricing|Manipulation|PriceGuard|Flipkart Product Listing|Browse Mode/i) || cleanTitle.trim().length < 3) {
+
+    // Reject internal UI text that may have leaked from PriceGuard elements
+    if (
+      cleanTitle.match(/Dynamic Pricing|Manipulation|PriceGuard|Flipkart Product Listing|Browse Mode/i) ||
+      cleanTitle.trim().length < 3
+    ) {
       const categoryFallbacks = {
         smartphones: "Smartphones",
-        audio: "Soundbar Earbuds",
+        audio: "Earbuds Soundbar",
         laptops: "Laptops",
         appliances: "Home Appliances",
-        fashion: "Fashion Lifestyle",
+        fashion: "Fashion",
         travel: "Flights",
-        general: "Top Deals"
+        general: "Electronics"
       };
       cleanTitle = categoryFallbacks[category] || "Electronics";
     }
 
+    // Build clean search keyword: brand + model, max 5 words, no noise
     let cleanQuery = cleanTitle
       .replace(/\(.*?\)/g, "")
       .replace(/\[.*?\]/g, "")
-      .replace(/(\b(with|and|by|for|in|exclusive|offer|special|black|blue|green|white|silver|gb|ram|rom|dynamic|pricing|manipulation|priceguard|flipkart)\b)/gi, " ")
+      .replace(/(Pantone|Color|Colour|Edition|Special|Exclusive|Offer|\d+GB\s*RAM|\d+GB\s*Storage|\d+\s*MP)/gi, " ")
+      .replace(/(\b(with|and|by|for|in|exclusive|offer|special|gb|ram|rom|dynamic|pricing|manipulation|priceguard|flipkart)\b)/gi, " ")
       .replace(/\s+/g, " ")
       .trim();
 
-    const queryWords = cleanQuery.split(" ").filter(w => w.length > 1).slice(0, 5).join(" ");
+    const queryWords = cleanQuery.split(" ").filter(w => w.length > 1).slice(0, 4).join(" ");
     const encoded = encodeURIComponent(queryWords || cleanTitle.slice(0, 40));
-
     const alternatives = [];
 
     if (category === "travel") {
-      const airlinePrice = Math.round(currentPrice * 0.86);
-      const easeMyTripPrice = Math.round(currentPrice * 0.89);
-      const mmtPrice = Math.round(currentPrice * 0.92);
-
+      // Travel — link to flight search engines
       alternatives.push({
-        retailer: "Official Airline Direct",
-        sellingPrice: airlinePrice,
-        savingsVsFlipkart: currentPrice - airlinePrice,
-        badge: "Lowest Direct Fare",
-        perk: "Bypasses OTA convenience fee & dynamic cookies",
+        retailer: "Google Flights",
+        checkPriceLabel: "Search Flights",
+        perk: "Compare all airlines instantly — usually beats Flipkart OTA price",
         url: `https://www.google.com/travel/flights?q=${encoded}`,
-        isLowestPrice: true,
-        logo: "🌐"
+        logo: "🌐",
+        isBestBet: true
       });
-
       alternatives.push({
         retailer: "EaseMyTrip",
-        sellingPrice: easeMyTripPrice,
-        savingsVsFlipkart: currentPrice - easeMyTripPrice,
-        badge: "Zero Convenience Fee",
-        perk: "Standard zero fee code automatically applied",
+        checkPriceLabel: "Check Fare",
+        perk: "Zero convenience fee available with promo code",
         url: `https://www.easemytrip.com/`,
-        isLowestPrice: false,
-        logo: "🎫"
+        logo: "🎫",
+        isBestBet: false
       });
-
       alternatives.push({
-        retailer: "MakeMyTrip Flights",
-        sellingPrice: mmtPrice,
-        savingsVsFlipkart: currentPrice - mmtPrice,
-        badge: "Bank Card Match",
-        perk: "Instant ₹800–₹1,500 bank coupon available",
+        retailer: "MakeMyTrip",
+        checkPriceLabel: "Check Fare",
+        perk: "₹800–₹1,500 bank card offer at checkout",
         url: `https://www.makemytrip.com/flights/`,
-        isLowestPrice: false,
-        logo: "✈️"
+        logo: "✈️",
+        isBestBet: false
       });
-    } else {
-      // E-Commerce Physical Goods (Smartphones, Audio, Laptops, Appliances, Fashion)
-      const amazonPrice = Math.round(currentPrice * 0.92);
-      const cromaPrice = Math.round(currentPrice * 0.94);
-      const reliancePrice = Math.round(currentPrice * 0.95);
-      const brandPrice = Math.round(currentPrice * 0.93);
 
+    } else if (category === "fashion") {
+      // Fashion — Myntra & Ajio carry it, Reliance Digital does NOT
+      alternatives.push({
+        retailer: "Myntra",
+        checkPriceLabel: "Search on Myntra",
+        perk: "Stackable 15% Insider Coupon available",
+        url: `https://www.myntra.com/${encoded.replace(/%20/g, "-")}`,
+        logo: "👗",
+        isBestBet: true
+      });
+      alternatives.push({
+        retailer: "Ajio",
+        checkPriceLabel: "Search on Ajio",
+        perk: "Flash Points available at checkout",
+        url: `https://www.ajio.com/search/?text=${encoded}`,
+        logo: "🛍️",
+        isBestBet: false
+      });
+      alternatives.push({
+        retailer: "Amazon Fashion",
+        checkPriceLabel: "Search on Amazon",
+        perk: "Prime delivery + card cashback applicable",
+        url: `https://www.amazon.in/s?k=${encoded}&rh=n%3A1571271031`,
+        logo: "📦",
+        isBestBet: false
+      });
+
+    } else if (category === "audio") {
+      // Audio — Amazon & Croma carry all audio. Reliance Digital carries major brands only.
       alternatives.push({
         retailer: "Amazon India",
-        sellingPrice: amazonPrice,
-        savingsVsFlipkart: Math.max(0, currentPrice - amazonPrice),
-        badge: "Cheapest Live Price",
-        perk: "Prime 1-Day Delivery + Card Offer Match",
+        checkPriceLabel: "Search on Amazon",
+        perk: "Largest audio selection — Prime 1-day delivery",
         url: `https://www.amazon.in/s?k=${encoded}`,
-        isLowestPrice: true,
-        logo: "📦"
+        logo: "📦",
+        isBestBet: true
+      });
+      alternatives.push({
+        retailer: "Croma",
+        checkPriceLabel: "Search on Croma",
+        perk: "NeuCoins + HDFC/ICICI instant discount",
+        url: `https://www.croma.com/searchB?q=${encoded}`,
+        logo: "🏬",
+        isBestBet: false
+      });
+      alternatives.push({
+        retailer: "Headphone Zone",
+        checkPriceLabel: "Search on Headphone Zone",
+        perk: "Specialist audio retailer — best for premium headphones",
+        url: `https://www.headphonezone.in/search?type=product&q=${encoded}`,
+        logo: "🎧",
+        isBestBet: false
       });
 
-      if (category === "smartphones" || category === "audio" || category === "laptops" || category === "appliances") {
-        alternatives.push({
-          retailer: "Croma Retail",
-          sellingPrice: cromaPrice,
-          savingsVsFlipkart: Math.max(0, currentPrice - cromaPrice),
-          badge: "Tata Verified Store",
-          perk: "NeuCoins + Instant HDFC/ICICI Card Off",
-          url: `https://www.croma.com/searchB?q=${encoded}`,
-          isLowestPrice: false,
-          logo: "🏬"
-        });
+    } else if (category === "laptops") {
+      // Laptops — Amazon, Croma, Vijay Sales. Reliance Digital carries limited laptop brands.
+      alternatives.push({
+        retailer: "Amazon India",
+        checkPriceLabel: "Search on Amazon",
+        perk: "Prime delivery + No Cost EMI options",
+        url: `https://www.amazon.in/s?k=${encoded}`,
+        logo: "📦",
+        isBestBet: true
+      });
+      alternatives.push({
+        retailer: "Croma",
+        checkPriceLabel: "Search on Croma",
+        perk: "NeuCoins + Tata verified purchase protection",
+        url: `https://www.croma.com/searchB?q=${encoded}`,
+        logo: "🏬",
+        isBestBet: false
+      });
+      alternatives.push({
+        retailer: "Vijay Sales",
+        checkPriceLabel: "Search on Vijay Sales",
+        perk: "Exchange offers + HDFC/ICICI discounts offline",
+        url: `https://www.vijaysales.com/search/${encoded.replace(/%20/g, "-")}`,
+        logo: "🖥️",
+        isBestBet: false
+      });
 
+    } else if (category === "appliances") {
+      // Appliances — Amazon, Croma, Reliance Digital all carry appliances
+      alternatives.push({
+        retailer: "Amazon India",
+        checkPriceLabel: "Search on Amazon",
+        perk: "Free installation + No Cost EMI on large appliances",
+        url: `https://www.amazon.in/s?k=${encoded}`,
+        logo: "📦",
+        isBestBet: true
+      });
+      alternatives.push({
+        retailer: "Croma",
+        checkPriceLabel: "Search on Croma",
+        perk: "Extended warranty + NeuCoins on Tata Pay",
+        url: `https://www.croma.com/searchB?q=${encoded}`,
+        logo: "🏬",
+        isBestBet: false
+      });
+      alternatives.push({
+        retailer: "Reliance Digital",
+        checkPriceLabel: "Search on Reliance Digital",
+        perk: "Jio Points + store pickup same day",
+        url: `https://www.reliancedigital.in/search?q=${encoded}`,
+        logo: "⚡",
+        isBestBet: false
+      });
+
+    } else {
+      // Smartphones & General — Amazon always carries. Croma carries major brands.
+      // Reliance Digital shown only for smartphones (they stock phones well).
+      alternatives.push({
+        retailer: "Amazon India",
+        checkPriceLabel: "Search on Amazon",
+        perk: "Prime 1-day delivery + instant bank card offers",
+        url: `https://www.amazon.in/s?k=${encoded}`,
+        logo: "📦",
+        isBestBet: true
+      });
+      alternatives.push({
+        retailer: "Croma",
+        checkPriceLabel: "Search on Croma",
+        perk: "NeuCoins + HDFC/ICICI instant card discount",
+        url: `https://www.croma.com/searchB?q=${encoded}`,
+        logo: "🏬",
+        isBestBet: false
+      });
+      if (category === "smartphones") {
         alternatives.push({
           retailer: "Reliance Digital",
-          sellingPrice: reliancePrice,
-          savingsVsFlipkart: Math.max(0, currentPrice - reliancePrice),
-          badge: "Direct Electronics",
-          perk: "Store Pickup / Jio Points Redemption",
+          checkPriceLabel: "Search on Reliance Digital",
+          perk: "Jio Points + official brand activation included",
           url: `https://www.reliancedigital.in/search?q=${encoded}`,
-          isLowestPrice: false,
-          logo: "⚡"
+          logo: "⚡",
+          isBestBet: false
         });
-      }
-
-      if (category === "fashion") {
-        const myntraPrice = Math.round(currentPrice * 0.88);
+      } else {
         alternatives.push({
-          retailer: "Myntra",
-          sellingPrice: myntraPrice,
-          savingsVsFlipkart: Math.max(0, currentPrice - myntraPrice),
-          badge: "Best Fashion Price",
-          perk: "Stackable 15% Insider Coupon",
-          url: `https://www.myntra.com/${encoded.replace(/%20/g, "-")}`,
-          isLowestPrice: true,
-          logo: "👗"
-        });
-
-        const ajioPrice = Math.round(currentPrice * 0.90);
-        alternatives.push({
-          retailer: "Ajio Trends",
-          sellingPrice: ajioPrice,
-          savingsVsFlipkart: Math.max(0, currentPrice - ajioPrice),
-          badge: "Reliance Fashion",
-          perk: "Flash Points available at checkout",
-          url: `https://www.ajio.com/search/?text=${encoded}`,
-          isLowestPrice: false,
-          logo: "🛍️"
+          retailer: "Tata CLiQ",
+          checkPriceLabel: "Search on Tata CLiQ",
+          perk: "Assured genuine products + easy returns",
+          url: `https://www.tatacliq.com/search/?searchCategory=all&text=${encoded}`,
+          logo: "🛒",
+          isBestBet: false
         });
       }
     }
@@ -224,14 +308,14 @@ const PriceGuardDataset = {
     if (currentPrice > 1000) {
       hacks.push({
         title: "Flipkart Axis Bank Card (5% Cashback)",
-        saving: `Save ₹${Math.min(2500, Math.round(currentPrice * 0.05)).toLocaleString('en-IN')}`,
+        saving: `Save ₹${Math.min(2500, Math.round(currentPrice * 0.05)).toLocaleString("en-IN")}`,
         description: "Unlimited 5% cashback credited directly to statement next billing cycle."
       });
     }
     if (currentPrice > 3000) {
       hacks.push({
         title: "HDFC / ICICI Instant Bank Coupon",
-        saving: `Save up to ₹${Math.min(1500, Math.round(currentPrice * 0.10)).toLocaleString('en-IN')}`,
+        saving: `Save up to ₹${Math.min(1500, Math.round(currentPrice * 0.10)).toLocaleString("en-IN")}`,
         description: "Check for Instant 10% discount on Credit Cards at the payment screen."
       });
     }
