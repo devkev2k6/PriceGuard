@@ -7,7 +7,7 @@
 }
 
 body {
-  width: 360px;
+  width: 390px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: #0f172a;
   color: #f8fafc;
@@ -18,7 +18,7 @@ body {
 .popup-container {
   display: flex;
   flex-direction: column;
-  min-height: 460px;
+  min-height: 560px;
 }
 
 /* Header */
@@ -26,8 +26,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 16px;
-  background: rgba(30, 41, 59, 0.7);
+  padding: 12px 16px;
+  background: rgba(30, 41, 59, 0.8);
   border-bottom: 1px solid #334155;
   backdrop-filter: blur(8px);
 }
@@ -39,9 +39,9 @@ body {
 }
 
 .brand-logo {
-  font-size: 20px;
-  width: 32px;
-  height: 32px;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
   background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   border-radius: 8px;
   display: flex;
@@ -70,7 +70,7 @@ body {
 
 /* Main */
 .popup-main {
-  padding: 16px;
+  padding: 14px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -86,7 +86,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 280px;
+  min-height: 320px;
   gap: 14px;
   color: #94a3b8;
   text-align: center;
@@ -109,12 +109,12 @@ body {
 .analysis-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .product-header {
   border-bottom: 1px solid #334155;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 .category-pill {
@@ -122,7 +122,7 @@ body {
   font-weight: 700;
   color: #38bdf8;
   letter-spacing: 0.5px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .product-title {
@@ -217,26 +217,105 @@ body {
   color: #34d399;
 }
 
+.price-mrp, .price-range {
+  display: block;
+  font-size: 10px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.price-item.highlight .price-range {
+  color: #a7f3d0;
+}
+
 /* Markup Alert */
 .markup-alert {
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid #ef4444;
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 11px;
-  color: #fca5a5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 📈 Price Floor Chart Box */
+.chart-box {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.chart-sub {
+  font-size: 9px;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background: #0f172a;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+#popup-price-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chart-stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  padding-top: 2px;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #cbd5e1;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 
 /* Signals list */
 .signals-mini-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .signal-chip {
   font-size: 10px;
-  padding: 5px 8px;
+  padding: 4px 8px;
   border-radius: 6px;
   background: #1e293b;
   border-left: 3px solid #3b82f6;
@@ -251,20 +330,134 @@ body {
   border-left-color: #f59e0b;
 }
 
+.signal-chip.info {
+  border-left-color: #38bdf8;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* Multi-Store Price Comparison Matrix */
+.alternatives-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.popup-deal-row {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.popup-deal-row:hover {
+  background: #273549;
+  border-color: #38bdf8;
+  transform: translateX(1px);
+}
+
+.popup-deal-row.best-deal {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1.5px solid #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+}
+
+.popup-deal-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.popup-deal-logo {
+  font-size: 18px;
+}
+
+.popup-deal-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.popup-best-badge {
+  font-size: 8px;
+  background: #10b981;
+  color: #ffffff;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.popup-deal-perk {
+  font-size: 9px;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+.popup-deal-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.popup-deal-price {
+  font-size: 13px;
+  font-weight: 800;
+  color: #34d399;
+}
+
+.popup-deal-save {
+  font-size: 9px;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.popup-deal-btn {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #2563eb;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 2px;
+  display: inline-block;
+}
+
+.popup-deal-row.best-deal .popup-deal-btn {
+  background: #059669;
+}
+
 /* Action Buttons */
 .action-buttons {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .btn-primary {
   background: #2563eb;
   color: #ffffff;
   border: none;
-  padding: 9px;
-  border-radius: 8px;
+  padding: 8px;
+  border-radius: 6px;
   font-weight: 700;
   font-size: 12px;
   cursor: pointer;
@@ -280,10 +473,12 @@ body {
   color: #e2e8f0;
   text-decoration: none;
   text-align: center;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 7px;
+  border: none;
+  border-radius: 6px;
   font-weight: 600;
   font-size: 11px;
+  cursor: pointer;
   transition: background 0.2s;
 }
 
@@ -302,7 +497,7 @@ body {
 
 .empty-icon {
   font-size: 32px;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .empty-state h3 {
@@ -323,7 +518,7 @@ body {
   border: 1px solid #334155;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   text-align: left;
 }
 
@@ -357,7 +552,7 @@ body {
 
 /* Footer */
 .popup-footer {
-  padding: 10px 16px;
+  padding: 8px 14px;
   background: #090d16;
   border-top: 1px solid #1e293b;
   display: flex;

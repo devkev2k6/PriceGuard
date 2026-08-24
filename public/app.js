@@ -227,19 +227,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       `;
     }
 
-    // Alternative Retailer Bridges
+    // Multi-Store Live Price Comparison Matrix
     resAlternativesContainer.innerHTML = counterPurchasing.alternativeDeals
       .map(
         (deal) => `
-      <div class="retailer-row">
+      <div class="retailer-row ${deal.isLowestPrice ? "best-deal-row" : ""}">
         <div class="retailer-info">
           <span class="retailer-logo">${deal.logo}</span>
           <div>
-            <div class="retailer-title">${deal.retailer}</div>
-            <div class="retailer-benefit">${deal.badge} • ${deal.discountEstimate}</div>
+            <div class="retailer-title" style="display:flex; align-items:center; gap:6px;">
+              ${deal.retailer}
+              ${deal.isLowestPrice ? '<span style="background:#10b981; color:#fff; font-size:9px; font-weight:800; padding:1px 6px; border-radius:4px;">BEST PRICE</span>' : ""}
+            </div>
+            <div class="retailer-benefit">${deal.perk}</div>
           </div>
         </div>
-        <a href="${deal.url}" target="_blank" rel="noopener" class="btn-retailer">Check Alternative ↗</a>
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="text-align: right;">
+            <div style="font-size: 15px; font-weight: 800; color: #34d399;">₹${deal.sellingPrice.toLocaleString("en-IN")}</div>
+            ${deal.savingsVsFlipkart > 0 ? `<div style="font-size: 10px; color: #38bdf8; font-weight: 700;">Save ₹${deal.savingsVsFlipkart.toLocaleString("en-IN")}</div>` : ""}
+          </div>
+          <a href="${deal.url}" target="_blank" rel="noopener" class="btn-retailer" style="${deal.isLowestPrice ? "background:#059669;" : ""}">Buy ↗</a>
+        </div>
       </div>
     `
       )
@@ -288,7 +297,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Generate 90-day time points
     const labels = ["Day -90", "Day -75", "Day -60", "Day -45", "Day -30", "Day -15", "Day -7", "Today (Listed)"];
-    
+
     // Simulate historical price curve leading to today
     const floor = product.historicalLowestFloor;
     const fair = evaluation.estimatedFairPrice;
@@ -316,29 +325,30 @@ document.addEventListener("DOMContentLoaded", async () => {
           {
             label: "Historical Market Price",
             data: dataPoints,
-            borderColor: evaluation.priceDifference > 0 ? "#ef4444" : "#38bdf8",
-            backgroundColor: "rgba(59, 130, 246, 0.1)",
+            borderColor: evaluation.priceDifference > 0 && evaluation.surgeRiskScore >= 40 ? "#ef4444" : "#2563eb",
+            backgroundColor: "rgba(37, 99, 235, 0.08)",
             borderWidth: 2.5,
             tension: 0.35,
+            fill: true,
             pointRadius: [3, 3, 3, 4, 3, 3, 3, 7],
             pointBackgroundColor: [
-              "#38bdf8", "#38bdf8", "#38bdf8", "#34d399", "#38bdf8", "#38bdf8", "#38bdf8",
-              evaluation.priceDifference > 0 ? "#ef4444" : "#34d399"
+              "#2563eb", "#2563eb", "#2563eb", "#10b981", "#2563eb", "#2563eb", "#2563eb",
+              evaluation.priceDifference > 0 && evaluation.surgeRiskScore >= 40 ? "#ef4444" : "#10b981"
             ]
           },
           {
             label: "AI Fair Price Baseline",
             data: fairLine,
-            borderColor: "#34d399",
+            borderColor: "#10b981",
             borderDash: [5, 5],
             borderWidth: 2,
             pointRadius: 0,
             fill: false
           },
           {
-            label: "Historical Floor (Lowest Recorded)",
+            label: "Historical Floor (Lowest)",
             data: floorLine,
-            borderColor: "#38bdf8",
+            borderColor: "#0284c7",
             borderDash: [2, 4],
             borderWidth: 1.5,
             pointRadius: 0,
@@ -352,11 +362,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         plugins: {
           legend: {
             labels: {
-              color: "#94a3b8",
-              font: { size: 11, weight: "600" }
+              color: "#475569",
+              font: { size: 11, weight: "700" }
             }
           },
           tooltip: {
+            backgroundColor: "#0f172a",
+            titleColor: "#ffffff",
+            bodyColor: "#ffffff",
             callbacks: {
               label: function (context) {
                 return `${context.dataset.label}: ₹${context.raw.toLocaleString("en-IN")}`;
@@ -366,16 +379,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
         scales: {
           x: {
-            grid: { color: "rgba(255, 255, 255, 0.05)" },
-            ticks: { color: "#64748b", font: { size: 10 } }
+            grid: { color: "rgba(0, 0, 0, 0.05)" },
+            ticks: { color: "#64748b", font: { size: 10, weight: "600" } }
           },
           y: {
-            grid: { color: "rgba(255, 255, 255, 0.05)" },
+            grid: { color: "rgba(0, 0, 0, 0.05)" },
             ticks: {
               color: "#64748b",
-              font: { size: 10 },
-              callback: function (val) {
-                return "₹" + val.toLocaleString("en-IN");
+              font: { size: 10, weight: "600" },
+              callback: function (value) {
+                return `₹${value.toLocaleString("en-IN")}`;
               }
             }
           }

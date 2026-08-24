@@ -14,7 +14,7 @@
         <div class="brand-logo">🛡️</div>
         <div>
           <h1 class="brand-title">PriceGuard AI</h1>
-          <p class="brand-subtitle">FinTech Pricing & Counter-Purchasing</p>
+          <p class="brand-subtitle">Flipkart Dynamic Pricing Shield</p>
         </div>
       </div>
       <span class="live-status-dot" title="Active & Monitoring"></span>
@@ -25,65 +25,107 @@
       <!-- Loading State -->
       <div class="loading-state" id="loading-state">
         <div class="spinner"></div>
-        <p>Scanning page for dynamic pricing signals...</p>
+        <p>Scanning Flipkart page for dynamic pricing...</p>
       </div>
 
-      <!-- Live Analysis Card (Shown when product is detected) -->
+      <!-- Live Analysis Card -->
       <div class="analysis-card hidden" id="analysis-card">
         <div class="product-header">
           <div class="category-pill" id="prod-category">SMARTPHONES</div>
           <h2 class="product-title" id="prod-title">Product Title</h2>
         </div>
 
+        <!-- Risk Meter -->
         <div class="risk-gauge-container">
           <div class="risk-gauge-label">
-            <span>DYNAMIC PRICING RISK</span>
-            <span class="risk-badge" id="risk-badge">78/100 • HIGH</span>
+            <span>DYNAMIC SURGE RISK</span>
+            <span class="risk-badge" id="risk-badge">0/100 • LOW</span>
           </div>
           <div class="meter-bar">
             <div class="meter-fill" id="meter-fill"></div>
           </div>
-          <p class="risk-text" id="risk-text">Significant surge indicators detected.</p>
+          <p class="risk-text" id="risk-text">Loading...</p>
         </div>
 
+        <!-- Price Matrix -->
         <div class="price-compare-grid">
           <div class="price-item">
             <span class="price-lbl">Flipkart Listed</span>
-            <span class="price-num" id="listed-price">₹7,800</span>
+            <span class="price-num" id="listed-price">₹0</span>
+            <span class="price-mrp" id="mrp-price">MRP: ₹0</span>
           </div>
           <div class="price-item highlight">
-            <span class="price-lbl">AI Fair Price</span>
-            <span class="price-num" id="fair-price">₹5,400</span>
+            <span class="price-lbl">AI Fair Target</span>
+            <span class="price-num" id="fair-price">₹0</span>
+            <span class="price-range" id="fair-range">Band: ₹0 - ₹0</span>
           </div>
         </div>
 
+        <!-- Markup / Savings Alert -->
         <div class="markup-alert" id="markup-alert">
-          <span>⚠️ <strong>₹2,400 Dynamic Markup</strong> detected</span>
+          <!-- Dynamic Alert Banner -->
         </div>
 
+        <!-- 📈 90-Day Price Floor & AI Valuation Curve -->
+        <div class="chart-box">
+          <div class="chart-header">
+            <span class="chart-title">📈 90-Day Price Floor & AI Valuation Curve</span>
+            <span class="chart-sub" id="chart-sub-tag">Benchmark Tracker</span>
+          </div>
+          <div class="canvas-wrapper">
+            <canvas id="popup-price-canvas" width="350" height="150"></canvas>
+          </div>
+          <div class="chart-stats-row">
+            <div class="stat-pill">
+              <span class="dot" style="background:#38bdf8;"></span>
+              <span>Floor: <strong id="stat-floor" style="color:#38bdf8;">₹0</strong></span>
+            </div>
+            <div class="stat-pill">
+              <span class="dot" style="background:#a78bfa;"></span>
+              <span>Avg: <strong id="stat-avg" style="color:#a78bfa;">₹0</strong></span>
+            </div>
+            <div class="stat-pill">
+              <span class="dot" style="background:#34d399;"></span>
+              <span>Fair: <strong id="stat-fair" style="color:#34d399;">₹0</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Signals list -->
         <div class="signals-mini-list" id="signals-mini-list">
-          <!-- Dynamic Signal tags -->
+          <!-- Dynamic Signal chips -->
         </div>
 
+        <!-- Multi-Store Live Price Comparison -->
+        <div class="section-title">🛍️ Live Multi-Store Price Comparison</div>
+        <div class="alternatives-list" id="popup-alternatives">
+          <!-- Rendered in JS with live competitor prices & Best Deal badge -->
+        </div>
+
+        <!-- Actions -->
         <div class="action-buttons">
-          <button class="btn-primary" id="btn-show-overlay">Open In-Page Assistant</button>
-          <a href="http://localhost:3000" target="_blank" class="btn-secondary">Open Analytics Dashboard ↗</a>
+          <button class="btn-primary" id="btn-show-overlay">Open In-Page Assistant ↗</button>
+          <button class="btn-secondary" id="btn-toggle-sim">+ Simulate 4x Repeated Views</button>
         </div>
       </div>
 
-      <!-- Offline / Non-Flipkart State -->
+      <!-- Browse Mode / No Product Active State -->
       <div class="empty-state hidden" id="empty-state">
-        <div class="empty-icon">🔍</div>
-        <h3>No Flipkart Product Open</h3>
-        <p>Open any product listing on <strong>flipkart.com</strong> to see real-time AI fair pricing and counter-purchasing deals.</p>
+        <div class="empty-icon">🛡️</div>
+        <h3>Flipkart Shield Active</h3>
+        <p style="color:#38bdf8; font-weight:700; font-size:11px; margin-top:-6px;">Browse Mode • Standing By</p>
+        <p>Open or click any product on <strong>flipkart.com</strong> (Smartphones, Laptops, Earbuds, Flights) to see real-time AI fair pricing, dynamic surge audits, and counter-deals.</p>
         
         <div class="quick-test-box">
-          <h4>🚀 Quick Test Scenarios</h4>
+          <h4>⚡ Instant Benchmark Simulations</h4>
           <button class="scenario-btn" id="btn-test-flight">
             ✈️ Flight Pass (₹7,800 Prompt Scenario)
           </button>
           <button class="scenario-btn" id="btn-test-mobile">
-            📱 Smartphone Festive Surge
+            📱 Smartphone Surge Test
+          </button>
+          <button class="scenario-btn" id="btn-test-headphones">
+            🎧 Audio ANC Earbuds Test
           </button>
         </div>
 
@@ -95,7 +137,7 @@
 
     <!-- Footer -->
     <footer class="popup-footer">
-      <span>PriceGuard v1.0 • Flipkart Real-time Shield</span>
+      <span>PriceGuard v1.0 • Flipkart Real-time</span>
       <a href="http://localhost:3000/admin.html" target="_blank" class="admin-link">Admin Console</a>
     </footer>
   </div>

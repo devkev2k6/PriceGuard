@@ -1,9 +1,9 @@
-/* PriceGuard AI - Modern Glassmorphic In-Page Overlay on Flipkart */
+/* PriceGuard AI - Premium FinTech Modern In-Page Overlay on Flipkart */
 
 #priceguard-root {
   position: fixed;
   z-index: 2147483647;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", Helvetica, Arial, sans-serif;
   color: #0f172a;
   box-sizing: border-box;
 }
@@ -21,36 +21,35 @@
   right: 24px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: #ffffff;
+  gap: 12px;
+  background: #ffffff;
+  color: #0f172a;
   padding: 10px 18px;
   border-radius: 50px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid #e0e7ff;
   user-select: none;
 }
 
 .pg-floating-pill:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(59, 130, 246, 0.5);
-  background: rgba(15, 23, 42, 0.98);
+  box-shadow: 0 16px 36px rgba(37, 99, 235, 0.25), 0 6px 16px rgba(0, 0, 0, 0.1);
+  border-color: #2563eb;
 }
 
 .pg-pill-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
   border-radius: 50%;
-  font-size: 15px;
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  color: #ffffff;
 }
 
 .pg-pill-content {
@@ -61,57 +60,58 @@
 
 .pg-pill-title {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.2px;
   display: flex;
   align-items: center;
   gap: 6px;
+  color: #0f172a;
 }
 
 .pg-pill-subtitle {
   font-size: 11px;
-  color: #94a3b8;
-  font-weight: 500;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 1px;
 }
 
 .pg-pill-badge {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
   border-radius: 20px;
-  text-transform: uppercase;
   letter-spacing: 0.3px;
 }
 
 .pg-badge-critical {
-  background: rgba(239, 68, 68, 0.25);
-  color: #fca5a5;
-  border: 1px solid #ef4444;
+  background: #fee2e2;
+  color: #ef4444;
+  border: 1px solid #fca5a5;
 }
 
 .pg-badge-moderate {
-  background: rgba(245, 158, 11, 0.25);
-  color: #fde68a;
-  border: 1px solid #f59e0b;
+  background: #fef3c7;
+  color: #d97706;
+  border: 1px solid #fcd34d;
 }
 
 .pg-badge-low {
-  background: rgba(16, 185, 129, 0.25);
-  color: #a7f3d0;
-  border: 1px solid #10b981;
+  background: #dcfce7;
+  color: #059669;
+  border: 1px solid #86efac;
 }
 
 /* Slide-out Drawer Panel */
 .pg-drawer {
   position: fixed;
-  bottom: 80px;
+  bottom: 84px;
   right: 24px;
   width: 440px;
   max-width: calc(100vw - 32px);
-  max-height: 82vh;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  max-height: 84vh;
+  background: #f8fafc;
+  border-radius: 24px;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(226, 232, 240, 0.8);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -127,73 +127,95 @@
 
 /* Drawer Header */
 .pg-drawer-header {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
   color: #ffffff;
-  padding: 16px 20px;
+  padding: 18px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
 }
 
 .pg-header-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .pg-header-icon {
-  font-size: 20px;
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
 }
 
 .pg-header-title {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 800;
   color: #ffffff;
+  letter-spacing: -0.3px;
 }
 
 .pg-header-meta {
   font-size: 11px;
-  color: #94a3b8;
+  color: #bfdbfe;
+  font-weight: 500;
+  margin-top: 1px;
 }
 
 .pg-close-btn {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
   border: none;
-  color: #cbd5e1;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
 }
 
 .pg-close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(90deg);
 }
 
 /* Drawer Body */
 .pg-drawer-body {
-  padding: 16px;
+  padding: 16px 18px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  background: #f8fafc;
+  flex: 1;
 }
 
-/* Risk Meter Card */
+.pg-drawer-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pg-drawer-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+/* Dynamic Pricing & Manipulation Risk Card */
 .pg-risk-card {
   background: #ffffff;
-  border-radius: 14px;
-  padding: 14px;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .pg-risk-header {
@@ -205,41 +227,40 @@
 
 .pg-risk-title {
   font-size: 12px;
-  font-weight: 700;
-  color: #64748b;
+  font-weight: 800;
+  color: #334155;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .pg-risk-score-badge {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 12px;
+  padding: 3px 9px;
+  border-radius: 20px;
 }
 
 .pg-gauge-bar {
-  height: 8px;
-  background: #e2e8f0;
+  height: 7px;
+  background: #f1f5f9;
   border-radius: 4px;
   overflow: hidden;
-  position: relative;
   margin-bottom: 8px;
 }
 
 .pg-gauge-fill {
   height: 100%;
   border-radius: 4px;
-  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: width 0.6s ease;
 }
 
 .pg-risk-desc {
   font-size: 12px;
-  color: #334155;
+  color: #475569;
   line-height: 1.4;
 }
 
-/* Price Comparison Matrix */
+/* Price Matrix Cards */
 .pg-price-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -248,59 +269,71 @@
 
 .pg-price-box {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 12px;
   border: 1px solid #e2e8f0;
-  text-align: left;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
 }
 
 .pg-price-box.pg-highlight-box {
-  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
   border: 1.5px solid #10b981;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.12);
 }
 
 .pg-price-label {
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 800;
   color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   margin-bottom: 4px;
 }
 
 .pg-price-val {
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 22px;
+  font-weight: 900;
   color: #0f172a;
+  letter-spacing: -0.5px;
 }
 
-.pg-price-box.pg-highlight-box .pg-price-val {
+.pg-highlight-box .pg-price-val {
   color: #059669;
 }
 
 .pg-price-sub {
   font-size: 11px;
   color: #64748b;
-  margin-top: 2px;
+  margin-top: 4px;
+  font-weight: 500;
 }
 
-/* Price Difference Alert Banner */
+.pg-highlight-box .pg-price-sub {
+  color: #047857;
+}
+
+/* Diff Banner */
 .pg-diff-banner {
   background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 12px;
-  padding: 10px 14px;
+  border: 1.5px solid #fecaca;
+  border-radius: 14px;
+  padding: 12px 14px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .pg-diff-icon {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .pg-diff-text {
   font-size: 12px;
   color: #991b1b;
-  line-height: 1.35;
+  line-height: 1.4;
+  font-weight: 500;
 }
 
 .pg-diff-strong {
@@ -308,19 +341,87 @@
   color: #b91c1c;
 }
 
-/* Warning Signals Accordion */
-.pg-section-title {
+/* 📈 90-Day Price Floor Chart Card */
+.pg-chart-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pg-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pg-chart-title {
   font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.pg-chart-tag {
+  font-size: 10px;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 2px 8px;
+  border-radius: 6px;
   font-weight: 700;
-  color: #475569;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+}
+
+.pg-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  background: #f8fafc;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+#pg-inpage-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.pg-chart-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  padding-top: 4px;
+  color: #64748b;
+}
+
+.pg-stat-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+}
+
+.pg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Section Title */
+.pg-section-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
   margin-top: 4px;
 }
 
+/* Signals List */
 .pg-signals-list {
   display: flex;
   flex-direction: column;
@@ -329,24 +430,25 @@
 
 .pg-signal-item {
   background: #ffffff;
-  border-radius: 10px;
-  padding: 10px 12px;
-  border-left: 3.5px solid #3b82f6;
-  border-top: 1px solid #f1f5f9;
-  border-right: 1px solid #f1f5f9;
-  border-bottom: 1px solid #f1f5f9;
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #2563eb;
 }
 
 .pg-signal-item.pg-danger {
   border-left-color: #ef4444;
+  background: #fff5f5;
 }
 
 .pg-signal-item.pg-warning {
   border-left-color: #f59e0b;
+  background: #fffbeb;
 }
 
 .pg-signal-item.pg-info {
   border-left-color: #3b82f6;
+  background: #f0f9ff;
 }
 
 .pg-signal-title-row {
@@ -358,16 +460,16 @@
 
 .pg-signal-title {
   font-size: 12px;
-  font-weight: 700;
-  color: #1e293b;
+  font-weight: 800;
+  color: #0f172a;
 }
 
 .pg-signal-weight {
   font-size: 10px;
-  font-weight: 700;
-  color: #64748b;
+  font-weight: 800;
+  color: #475569;
   background: #f1f5f9;
-  padding: 1px 6px;
+  padding: 2px 6px;
   border-radius: 6px;
 }
 
@@ -377,7 +479,7 @@
   line-height: 1.35;
 }
 
-/* Counter-Purchasing Cards */
+/* Multi-Store Price Comparison Matrix */
 .pg-deals-list {
   display: flex;
   flex-direction: column;
@@ -387,40 +489,91 @@
 .pg-deal-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 10px 12px;
+  border-radius: 14px;
+  padding: 12px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .pg-deal-card:hover {
-  border-color: #3b82f6;
+  border-color: #2563eb;
   background: #f8fafc;
   transform: translateX(2px);
+}
+
+.pg-deal-card.best-deal {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border: 1.5px solid #10b981;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15);
 }
 
 .pg-deal-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .pg-deal-logo {
-  font-size: 20px;
+  font-size: 22px;
+  background: #f1f5f9;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pg-deal-card.best-deal .pg-deal-logo {
+  background: #dcfce7;
 }
 
 .pg-deal-name {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 800;
   color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.pg-deal-est {
+.pg-best-badge {
+  font-size: 9px;
+  font-weight: 800;
+  background: #10b981;
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+
+.pg-deal-perk {
   font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.pg-deal-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.pg-deal-price {
+  font-size: 15px;
+  font-weight: 900;
   color: #059669;
-  font-weight: 600;
+}
+
+.pg-deal-save {
+  font-size: 10px;
+  color: #2563eb;
+  font-weight: 700;
 }
 
 .pg-deal-btn {
@@ -428,13 +581,17 @@
   color: #ffffff;
   text-decoration: none;
   font-size: 11px;
-  font-weight: 700;
-  padding: 6px 12px;
+  font-weight: 800;
+  padding: 5px 12px;
   border-radius: 6px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
   transition: background 0.2s;
+}
+
+.pg-deal-card.best-deal .pg-deal-btn {
+  background: #059669;
 }
 
 .pg-deal-btn:hover {
@@ -452,40 +609,42 @@
 .pg-tactic-item {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 9px 12px;
+  border-radius: 14px;
+  padding: 10px 14px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: flex-start;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
 .pg-tactic-icon {
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 1px;
 }
 
 .pg-tactic-title {
   font-size: 12px;
-  font-weight: 700;
-  color: #1e293b;
+  font-weight: 800;
+  color: #0f172a;
 }
 
 .pg-tactic-action {
   font-size: 11px;
   color: #475569;
-  line-height: 1.3;
+  line-height: 1.35;
+  margin-top: 1px;
 }
 
 .pg-tactic-benefit {
   font-size: 10px;
   color: #0284c7;
-  font-weight: 700;
-  margin-top: 2px;
+  font-weight: 800;
+  margin-top: 3px;
 }
 
 /* Drawer Footer */
 .pg-drawer-footer {
-  padding: 12px 16px;
+  padding: 14px 18px;
   background: #ffffff;
   border-top: 1px solid #e2e8f0;
   display: flex;
@@ -498,9 +657,9 @@
   border: 1px solid #cbd5e1;
   color: #334155;
   font-size: 11px;
-  font-weight: 600;
-  padding: 6px 10px;
-  border-radius: 6px;
+  font-weight: 700;
+  padding: 7px 12px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -511,12 +670,16 @@
 }
 
 .pg-open-dash-link {
-  font-size: 11px;
+  font-size: 12px;
   color: #2563eb;
-  font-weight: 700;
+  font-weight: 800;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .pg-open-dash-link:hover {
+  color: #1d4ed8;
   text-decoration: underline;
 }
