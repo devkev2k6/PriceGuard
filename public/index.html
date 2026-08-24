@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PriceGuard AI - FinTech Price-Checking & Counter-Purchasing Shield</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js for Interactive Price Floor & Trend Visuals -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="logo-group">
+        <div class="logo-icon">🛡️</div>
+        <div class="logo-text">
+          <h1>PriceGuard AI</h1>
+          <p>FinTech Anti-Surge & Counter-Purchasing</p>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Consumer Shield</a>
+        <a href="#scenarios" class="nav-link">Test Scenarios</a>
+        <a href="#counter-purchasing" class="nav-link">Counter-Deals</a>
+        <a href="admin.html" class="nav-link">Admin Console</a>
+        <span class="nav-badge-pill">Flipkart Live Engine</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-tag">⚡ AI-Powered Dynamic Pricing Defense & Market Valuation</div>
+      <h2 class="hero-title">Unmask E-Commerce Surge Pricing & Artificial Urgency</h2>
+      <p class="hero-subtitle">
+        Detect when repetitive searches, artificial "Only 1 Left" countdowns, or peak traffic are inflating your prices. Get instant fair-price valuations and actionable counter-purchasing alternatives.
+      </p>
+    </div>
+  </header>
+
+  <!-- Extension Promo Banner -->
+  <section class="container">
+    <div class="extension-promo-card">
+      <div class="promo-left">
+        <h3>🔌 Use Directly on Live Flipkart (Chrome Extension)</h3>
+        <p>This engine runs natively on live <strong>flipkart.com</strong> product pages via our Manifest V3 Chrome Extension. It extracts live prices, monitors visit frequency, detects FOMO countdowns, and renders a floating AI assistant.</p>
+        <div class="promo-steps">
+          <span class="promo-step">1. Open <code>chrome://extensions</code></span>
+          <span class="promo-step">2. Enable "Developer Mode"</span>
+          <span class="promo-step">3. Click "Load unpacked" & select the <code>extension</code> folder</span>
+        </div>
+      </div>
+      <a href="#how-to-install" class="btn-install-guide">View Live Guide ↓</a>
+    </div>
+  </section>
+
+  <!-- Scenario Selector Strip -->
+  <section class="container" id="scenarios">
+    <div class="scenario-strip">
+      <div class="scenario-header">
+        <h3>⚡ Benchmark Test Scenarios (1-Click Run)</h3>
+        <span style="font-size: 11px; color: var(--text-muted);">Matches prompt test cases & real dynamic pricing spikes</span>
+      </div>
+      <div class="scenario-grid" id="scenario-buttons-container">
+        <!-- Dynamically rendered via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Product Input Section -->
+  <section class="container">
+    <div class="input-section">
+      <div class="scenario-header">
+        <h3>🔍 Live Price & Signal Inspector</h3>
+      </div>
+      <form id="inspector-form" class="input-grid">
+        <div class="form-group">
+          <label for="input-title">Product / Listing Title</label>
+          <input type="text" id="input-title" class="form-input" placeholder="e.g. Bangalore to Kolkata flight pass or iPhone 15" required>
+        </div>
+        <div class="form-group">
+          <label for="input-listed">Listed Price (₹)</label>
+          <input type="number" id="input-listed" class="form-input" placeholder="7800" required>
+        </div>
+        <div class="form-group">
+          <label for="input-mrp">Stated MRP (₹)</label>
+          <input type="number" id="input-mrp" class="form-input" placeholder="9999">
+        </div>
+        <div class="form-group">
+          <label for="input-visits">Views in 30 Mins</label>
+          <input type="number" id="input-visits" class="form-input" value="4" min="1" max="20">
+        </div>
+        <button type="submit" class="btn-analyze" id="btn-run-analysis">
+          <span>Run AI Audit</span> ⚡
+        </button>
+      </form>
+
+      <div style="display: flex; gap: 20px; margin-top: 14px; font-size: 12px; color: var(--text-secondary);">
+        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+          <input type="checkbox" id="check-scarcity" checked> Include 'Only 1 seat/item left' Urgency Badge
+        </label>
+        <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+          <input type="checkbox" id="check-timer" checked> Active Countdown Timer Pressure
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Dashboard -->
+  <main class="container">
+    <div class="dashboard-grid">
+      <!-- Left Column: Risk, Valuation & Signals -->
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <!-- Dynamic Pricing & Manipulation Risk Meter -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🛡️ Dynamic Surge & Manipulation Risk Assessment</h3>
+            <span class="category-pill" id="res-category">CATEGORY</span>
+          </div>
+
+          <div class="risk-meter-box">
+            <div class="risk-meter-top">
+              <div class="risk-score-display" id="res-risk-score">65/100</div>
+              <span class="risk-tag" id="res-risk-tag">MODERATE SURGE</span>
+            </div>
+            <div class="risk-progress-bar">
+              <div class="risk-progress-fill" id="res-risk-bar"></div>
+            </div>
+            <p class="risk-explanation" id="res-risk-summary">Loading analysis...</p>
+          </div>
+
+          <!-- Price Matrix -->
+          <div class="price-stats-grid">
+            <div class="price-stat-card">
+              <div class="stat-label">Listed on Flipkart</div>
+              <div class="stat-value" id="res-listed-price">₹0</div>
+              <div class="stat-sub" id="res-mrp">Stated MRP: ₹0</div>
+            </div>
+            <div class="price-stat-card featured">
+              <div class="stat-label">AI Estimated Fair Price</div>
+              <div class="stat-value" id="res-fair-price">₹0</div>
+              <div class="stat-sub" id="res-fair-range">Fair Range: ₹0 - ₹0</div>
+            </div>
+          </div>
+
+          <!-- Surge Markup Alert Banner -->
+          <div class="markup-alert-box" id="res-markup-banner">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-content">
+              <h4 id="res-markup-title">₹0 Dynamic Surge Markup</h4>
+              <p id="res-markup-desc">Follow the counter-purchasing plan below to avoid paying inflated session pricing.</p>
+            </div>
+          </div>
+
+          <!-- Detected Signals -->
+          <div>
+            <h4 style="font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--text-secondary);">
+              🚨 DETECTED MANIPULATION & SURGE SIGNALS
+            </h4>
+            <div class="signal-rows" id="res-signals-container">
+              <!-- Dynamically rendered -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Historical 90-Day Price Trend & Floor Chart -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📈 90-Day Price Floor & AI Valuation Curve</h3>
+            <span style="font-size: 11px; color: var(--text-muted);">Historical Benchmark Tracker</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="priceChart"></canvas>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-secondary); padding-top: 4px;">
+            <span>Historical Floor: <strong id="res-hist-floor" style="color: #38bdf8;">₹0</strong></span>
+            <span>30-Day Moving Average: <strong id="res-hist-avg" style="color: #a78bfa;">₹0</strong></span>
+            <span>Fair Benchmark: <strong id="res-hist-fair" style="color: #34d399;">₹0</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Counter-Purchasing Intelligence & Alternative Bridges -->
+      <div style="display: flex; flex-direction: column; gap: 24px;" id="counter-purchasing">
+        <!-- Verified Alternative Retailer Bridges -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🛍️ Verified Counter-Purchasing Bridges</h3>
+            <span style="font-size: 11px; color: #34d399; font-weight: 700;">1-Click Cross Check</span>
+          </div>
+          <p style="font-size: 12px; color: var(--text-secondary);">
+            Dynamic pricing algorithms exploit single-platform lock-in. Bypass inflated rates on verified competing channels:
+          </p>
+          <div class="retailers-list" id="res-alternatives-container">
+            <!-- Dynamically rendered -->
+          </div>
+        </div>
+
+        <!-- Smart Tactical Actions -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🛡️ Smart Counter-Purchasing Tactics</h3>
+          </div>
+          <div class="tactics-grid" id="res-tactics-container">
+            <!-- Dynamically rendered -->
+          </div>
+        </div>
+
+        <!-- Payment & Bank Card Hacks -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">💳 Checkout & Payment Hack Optimizer</h3>
+          </div>
+          <div class="tactics-grid" id="res-payment-container">
+            <!-- Dynamically rendered -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Step-by-Step Installation Guide -->
+  <section class="container" id="how-to-install" style="margin-bottom: 40px;">
+    <div class="card" style="border-color: var(--accent-blue);">
+      <div class="card-header">
+        <h3 class="card-title">🛠️ How to Test on Live Flipkart Website</h3>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+        <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-md);">
+          <div style="font-size: 14px; font-weight: 800; color: #38bdf8; margin-bottom: 6px;">Step 1: Load Extension</div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">
+            Open Google Chrome (or Edge/Brave), go to <code>chrome://extensions</code>, turn on <strong>Developer Mode</strong> at top right, and click <strong>Load unpacked</strong>. Select the <code>extension</code> folder in this project.
+          </p>
+        </div>
+        <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-md);">
+          <div style="font-size: 14px; font-weight: 800; color: #38bdf8; margin-bottom: 6px;">Step 2: Open Flipkart</div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">
+            Navigate to any product on <code>https://www.flipkart.com</code> (e.g. mobile phones, headphones, laptops, flight passes).
+          </p>
+        </div>
+        <div style="background: var(--bg-card); padding: 16px; border-radius: var(--radius-md);">
+          <div style="font-size: 14px; font-weight: 800; color: #38bdf8; margin-bottom: 6px;">Step 3: Instant AI Shield</div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4;">
+            The <strong>PriceGuard AI</strong> floating pill will appear on the bottom-right of the Flipkart page. Click it to view the live dynamic pricing risk, AI fair price, and 1-click counter-deals!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>PriceGuard AI • FinTech Dynamic Pricing & Counter-Purchasing Shield for Flipkart & E-Commerce</p>
+    </div>
+  </footer>
+
+  <script src="/extension/dataset.js"></script>
+  <script src="/extension/engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

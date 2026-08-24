@@ -1,0 +1,378 @@
+/* PriceGuard AI - Popup Styling */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 360px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+  font-size: 13px;
+  overflow-x: hidden;
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 460px;
+}
+
+/* Header */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: rgba(30, 41, 59, 0.7);
+  border-bottom: 1px solid #334155;
+  backdrop-filter: blur(8px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.brand-subtitle {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.live-status-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+/* Main */
+.popup-main {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Loading */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  gap: 14px;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #334155;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Analysis Card */
+.analysis-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-header {
+  border-bottom: 1px solid #334155;
+  padding-bottom: 10px;
+}
+
+.category-pill {
+  font-size: 9px;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.product-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f1f5f9;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Risk Gauge */
+.risk-gauge-container {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 10px 12px;
+  border: 1px solid #334155;
+}
+
+.risk-gauge-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+
+.risk-badge {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.meter-bar {
+  height: 6px;
+  background: #334155;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+.risk-text {
+  font-size: 11px;
+  color: #cbd5e1;
+  line-height: 1.3;
+}
+
+/* Price Grid */
+.price-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.price-item {
+  background: #1e293b;
+  border-radius: 8px;
+  padding: 8px 10px;
+  border: 1px solid #334155;
+}
+
+.price-item.highlight {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+}
+
+.price-lbl {
+  display: block;
+  font-size: 10px;
+  color: #94a3b8;
+  margin-bottom: 2px;
+}
+
+.price-num {
+  font-size: 16px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.price-item.highlight .price-num {
+  color: #34d399;
+}
+
+/* Markup Alert */
+.markup-alert {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+  color: #fca5a5;
+}
+
+/* Signals list */
+.signals-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.signal-chip {
+  font-size: 10px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #1e293b;
+  border-left: 3px solid #3b82f6;
+  color: #cbd5e1;
+}
+
+.signal-chip.danger {
+  border-left-color: #ef4444;
+}
+
+.signal-chip.warning {
+  border-left-color: #f59e0b;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 9px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  background: #334155;
+  color: #e2e8f0;
+  text-decoration: none;
+  text-align: center;
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 11px;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #475569;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-icon {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.empty-state h3 {
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.empty-state p {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.quick-test-box {
+  background: #1e293b;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.quick-test-box h4 {
+  font-size: 11px;
+  color: #cbd5e1;
+  margin-bottom: 2px;
+}
+
+.scenario-btn {
+  background: #0f172a;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.scenario-btn:hover {
+  border-color: #38bdf8;
+  background: #1e293b;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Footer */
+.popup-footer {
+  padding: 10px 16px;
+  background: #090d16;
+  border-top: 1px solid #1e293b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #64748b;
+}
+
+.admin-link {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.admin-link:hover {
+  text-decoration: underline;
+}

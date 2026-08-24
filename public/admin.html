@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Pricing Intelligence & Fairness Console - PriceGuard AI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="logo-group">
+        <div class="logo-icon">🛡️</div>
+        <div class="logo-text">
+          <h1>PriceGuard AI • Admin</h1>
+          <p>Pricing Fairness & Dynamic Surge Governance</p>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Consumer Shield</a>
+        <a href="admin.html" class="nav-link active">Admin Console</a>
+        <span class="nav-badge-pill" style="border-color: #ef4444; color: #f87171; background: rgba(239, 68, 68, 0.15);">
+          Gov Audit Active
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="hero" style="padding: 30px 0 10px;">
+    <div class="container">
+      <div class="hero-tag" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.3);">
+        ⚖️ E-Commerce Pricing Transparency & Dark Pattern Monitor
+      </div>
+      <h2 class="hero-title">Platform Pricing Trends & Fairness Audit</h2>
+      <p class="hero-subtitle">
+        Review real-time dynamic pricing incidents, category fairness indices, repeated-search markups, and artificial urgency dark patterns.
+      </p>
+    </div>
+  </header>
+
+  <!-- Admin Overview Stats -->
+  <section class="container">
+    <div class="stats-overview-grid">
+      <div class="admin-stat-card">
+        <div class="stat-label">Total Audited Listings</div>
+        <div class="admin-stat-val" style="color: #38bdf8;" id="adm-total">1,248</div>
+        <div class="stat-sub">Across Flipkart, Flights & Retail</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="stat-label">Flagged Dynamic Surges</div>
+        <div class="admin-stat-val" style="color: #f87171;" id="adm-flagged">146</div>
+        <div class="stat-sub">Surge Risk Score > 55/100</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="stat-label">Average Surge Markup</div>
+        <div class="admin-stat-val" style="color: #fbbf24;" id="adm-avg-markup">+23.4%</div>
+        <div class="stat-sub">Above estimated fair price</div>
+      </div>
+      <div class="admin-stat-card">
+        <div class="stat-label">Dark Pattern Incidents</div>
+        <div class="admin-stat-val" style="color: #c084fc;">201</div>
+        <div class="stat-sub">Artificial Timers & "Only 1 Left"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Fairness Indices & Trends -->
+  <section class="container" style="margin-bottom: 30px;">
+    <div class="dashboard-grid">
+      <!-- Category Fairness Scoreboard -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">📊 Category Fairness Indices</h3>
+          <span style="font-size: 11px; color: var(--text-muted);">Lower Score = Higher Manipulation</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;" id="adm-category-bars">
+          <!-- Dynamically populated via JS -->
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; font-size: 12px;">
+              <strong>Flights & Travel Passes</strong>
+              <span style="color: #ef4444; font-weight: 800;">42/100 • Critical Surge Volatility</span>
+            </div>
+            <div style="height: 8px; background: #334155; border-radius: 4px; overflow: hidden;">
+              <div style="width: 42%; height: 100%; background: #ef4444;"></div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; font-size: 12px;">
+              <strong>Audio & Wearables</strong>
+              <span style="color: #f59e0b; font-weight: 800;">55/100 • High Velocity Spikes</span>
+            </div>
+            <div style="height: 8px; background: #334155; border-radius: 4px; overflow: hidden;">
+              <div style="width: 55%; height: 100%; background: #f59e0b;"></div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; font-size: 12px;">
+              <strong>Smartphones & Mobiles</strong>
+              <span style="color: #3b82f6; font-weight: 800;">68/100 • Moderate Dynamic Adjustments</span>
+            </div>
+            <div style="height: 8px; background: #334155; border-radius: 4px; overflow: hidden;">
+              <div style="width: 68%; height: 100%; background: #3b82f6;"></div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; font-size: 12px;">
+              <strong>Laptops & Computing</strong>
+              <span style="color: #10b981; font-weight: 800;">78/100 • Fair & Stable</span>
+            </div>
+            <div style="height: 8px; background: #334155; border-radius: 4px; overflow: hidden;">
+              <div style="width: 78%; height: 100%; background: #10b981;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manipulation Tactics Breakdown -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">🔍 Detected Dynamic Pricing Triggers</h3>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="signal-row danger">
+            <div class="signal-row-header">
+              <span class="signal-row-title">Repeated Search Velocity (Cookie/IP Tracking)</span>
+              <span class="signal-row-badge" style="color:#ef4444; background:rgba(239,68,68,0.15);">38% of incidents</span>
+            </div>
+            <div class="signal-row-desc">Shoppers viewing an item 3+ times in a 30-minute window encounter an average 18-35% price increase.</div>
+          </div>
+
+          <div class="signal-row warning">
+            <div class="signal-row-header">
+              <span class="signal-row-title">Artificial Scarcity Pressure ("Only 1 Left")</span>
+              <span class="signal-row-badge" style="color:#f59e0b; background:rgba(245,158,11,0.15);">29% of incidents</span>
+            </div>
+            <div class="signal-row-desc">Simulated or throttled inventory banners designed to accelerate conversion without price comparison.</div>
+          </div>
+
+          <div class="signal-row">
+            <div class="signal-row-header">
+              <span class="signal-row-title">Peak-Hour Traffic Markup (8 PM - 11 PM)</span>
+              <span class="signal-row-badge" style="color:#38bdf8; background:rgba(56,189,248,0.15);">21% of incidents</span>
+            </div>
+            <div class="signal-row-desc">Algorithmic reduction of discount coupons during peak evening internet browsing sessions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Incident Log Table -->
+  <section class="container" style="margin-bottom: 40px;">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🚨 Real-Time Dynamic Pricing Incident Log</h3>
+        <button class="btn-primary" id="btn-refresh-logs" style="padding: 6px 12px; font-size: 11px;">Refresh Live Logs 🔄</button>
+      </div>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Incident ID</th>
+              <th>Timestamp</th>
+              <th>Product / Listing</th>
+              <th>Category</th>
+              <th>Listed Price</th>
+              <th>Fair Price</th>
+              <th>Markup %</th>
+              <th>Risk Score</th>
+              <th>Detected Patterns</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="incidents-table-body">
+            <!-- Dynamically populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>PriceGuard AI • Admin Dynamic Pricing Governance & Intelligence System</p>
+    </div>
+  </footer>
+
+  <script>
+    async function loadAdminData() {
+      try {
+        const res = await fetch('/api/admin/incidents');
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('adm-total').innerText = data.totalAudited.toLocaleString('en-IN');
+          document.getElementById('adm-flagged').innerText = data.flaggedSurges.toLocaleString('en-IN');
+          document.getElementById('adm-avg-markup').innerText = data.avgMarkupDetected;
+
+          const tbody = document.getElementById('incidents-table-body');
+          tbody.innerHTML = data.incidents.map(inc => `
+            <tr>
+              <td><strong style="color:#38bdf8;">${inc.id}</strong></td>
+              <td>${new Date(inc.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+              <td><strong style="color:#f8fafc;">${inc.product}</strong></td>
+              <td><span style="font-size:11px; color:#94a3b8;">${inc.category}</span></td>
+              <td style="color:#f87171; font-weight:700;">₹${inc.listedPrice.toLocaleString('en-IN')}</td>
+              <td style="color:#34d399; font-weight:700;">₹${inc.estimatedFairPrice.toLocaleString('en-IN')}</td>
+              <td><span style="color:#fbbf24; font-weight:800;">+${inc.markupPct}%</span></td>
+              <td>
+                <span class="badge-tag ${inc.riskScore >= 60 ? 'badge-flagged' : 'badge-resolved'}">
+                  ${inc.riskScore}/100
+                </span>
+              </td>
+              <td><span style="font-size:11px; color:#cbd5e1;">${inc.flags.join(', ')}</span></td>
+              <td>
+                <span class="badge-tag ${inc.status === 'Flagged' ? 'badge-flagged' : 'badge-resolved'}">
+                  ${inc.status}
+                </span>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.error('Failed to load admin data', e);
+      }
+    }
+
+    document.getElementById('btn-refresh-logs').onclick = loadAdminData;
+    document.addEventListener('DOMContentLoaded', loadAdminData);
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "manifest_version": 3,
+  "name": "PriceGuard AI - Flipkart Fair Price & Counter-Purchasing",
+  "version": "1.0.0",
+  "description": "AI-powered dynamic pricing detector, fair-price estimator, and counter-purchasing engine for Flipkart.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*.flipkart.com/*",
+    "*://flipkart.com/*",
+    "*://localhost/*",
+    "*://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.flipkart.com/*",
+        "*://flipkart.com/*",
+        "*://localhost/*",
+        "*://127.0.0.1/*"
+      ],
+      "js": [
+        "dataset.js",
+        "engine.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PriceGuard AI Price Checker",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "content.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

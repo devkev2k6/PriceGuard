@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PriceGuard AI</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="brand">
+        <div class="brand-logo">🛡️</div>
+        <div>
+          <h1 class="brand-title">PriceGuard AI</h1>
+          <p class="brand-subtitle">FinTech Pricing & Counter-Purchasing</p>
+        </div>
+      </div>
+      <span class="live-status-dot" title="Active & Monitoring"></span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="popup-main" id="popup-content">
+      <!-- Loading State -->
+      <div class="loading-state" id="loading-state">
+        <div class="spinner"></div>
+        <p>Scanning page for dynamic pricing signals...</p>
+      </div>
+
+      <!-- Live Analysis Card (Shown when product is detected) -->
+      <div class="analysis-card hidden" id="analysis-card">
+        <div class="product-header">
+          <div class="category-pill" id="prod-category">SMARTPHONES</div>
+          <h2 class="product-title" id="prod-title">Product Title</h2>
+        </div>
+
+        <div class="risk-gauge-container">
+          <div class="risk-gauge-label">
+            <span>DYNAMIC PRICING RISK</span>
+            <span class="risk-badge" id="risk-badge">78/100 • HIGH</span>
+          </div>
+          <div class="meter-bar">
+            <div class="meter-fill" id="meter-fill"></div>
+          </div>
+          <p class="risk-text" id="risk-text">Significant surge indicators detected.</p>
+        </div>
+
+        <div class="price-compare-grid">
+          <div class="price-item">
+            <span class="price-lbl">Flipkart Listed</span>
+            <span class="price-num" id="listed-price">₹7,800</span>
+          </div>
+          <div class="price-item highlight">
+            <span class="price-lbl">AI Fair Price</span>
+            <span class="price-num" id="fair-price">₹5,400</span>
+          </div>
+        </div>
+
+        <div class="markup-alert" id="markup-alert">
+          <span>⚠️ <strong>₹2,400 Dynamic Markup</strong> detected</span>
+        </div>
+
+        <div class="signals-mini-list" id="signals-mini-list">
+          <!-- Dynamic Signal tags -->
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn-primary" id="btn-show-overlay">Open In-Page Assistant</button>
+          <a href="http://localhost:3000" target="_blank" class="btn-secondary">Open Analytics Dashboard ↗</a>
+        </div>
+      </div>
+
+      <!-- Offline / Non-Flipkart State -->
+      <div class="empty-state hidden" id="empty-state">
+        <div class="empty-icon">🔍</div>
+        <h3>No Flipkart Product Open</h3>
+        <p>Open any product listing on <strong>flipkart.com</strong> to see real-time AI fair pricing and counter-purchasing deals.</p>
+        
+        <div class="quick-test-box">
+          <h4>🚀 Quick Test Scenarios</h4>
+          <button class="scenario-btn" id="btn-test-flight">
+            ✈️ Flight Pass (₹7,800 Prompt Scenario)
+          </button>
+          <button class="scenario-btn" id="btn-test-mobile">
+            📱 Smartphone Festive Surge
+          </button>
+        </div>
+
+        <a href="http://localhost:3000" target="_blank" class="btn-secondary full-width">
+          Open Standalone Web Dashboard ↗
+        </a>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <span>PriceGuard v1.0 • Flipkart Real-time Shield</span>
+      <a href="http://localhost:3000/admin.html" target="_blank" class="admin-link">Admin Console</a>
+    </footer>
+  </div>
+
+  <script src="dataset.js"></script>
+  <script src="engine.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
